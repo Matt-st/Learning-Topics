@@ -12,3 +12,8 @@ I have added ehcache to cache the response which improves performance to as low 
 
 ## Testing
 I have also added testing to the code which has an overall coverage of 73.2%.
+
+## Integration Testing
+I created a a small python script which executes a query on the service and asserts the expected values are returned.
+Under the integration-tests directory run the following line to execute the integration tests.
+`python3 movie-search-integration-tests.py`

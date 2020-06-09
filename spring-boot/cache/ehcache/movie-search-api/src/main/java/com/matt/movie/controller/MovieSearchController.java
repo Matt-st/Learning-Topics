@@ -6,10 +6,7 @@ import com.matt.movie.model.SearchResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.matt.movie.service.MovieSearchService;
 
@@ -20,9 +17,9 @@ public class MovieSearchController {
 	MovieSearchService service;
 	
 	@RequestMapping(value = "/api/movie/search", method = RequestMethod.GET)
-	public ResponseEntity<SearchResponse> getMovieTitles(@RequestBody SearchRequest searchRequest) {
+	public ResponseEntity<SearchResponse> getMovieTitles(@RequestParam String title) {
 		SearchResponse s = new SearchResponse();
-		s.setTitles( service.findMoviesByTitle(searchRequest.getTitle()));
+		s.setTitles( service.findMoviesByTitle(title));
 		if(s.getTitles().isEmpty()){
 			return new ResponseEntity<SearchResponse>(s, HttpStatus.NOT_FOUND);
 		}

@@ -52,8 +52,7 @@ public class MovieSearchServiceImplTest {
 	    				ArgumentMatchers.any(HttpMethod.class), 
 	    				ArgumentMatchers.any(HttpEntity.class), 
 	    				ArgumentMatchers.<Class<HRMovieResponse>>any())).thenReturn(response);
-	    
-	    SearchRequest s = new SearchRequest("s");
+
 	    List<String> titles = service.findMoviesByTitle("a");
 	    System.out.println(titles.get(0));
 	    System.out.println(titles.get(1));

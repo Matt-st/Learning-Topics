@@ -41,8 +41,7 @@ public class MovieSearchControllerTest {
 		List<String> titles = new ArrayList<String>();
 		titles.add("matt");
 	    when(service.findMoviesByTitle(anyString())).thenReturn(titles);
-	    SearchRequest s = new SearchRequest("s");
-	    ResponseEntity<SearchResponse> resp = controller.getMovieTitles(s);
+	    ResponseEntity<SearchResponse> resp = controller.getMovieTitles("s");
 	    Assertions.assertThat(resp).isNotNull();
 	    Assertions.assertThat(resp.getBody().getTitles()).size().isEqualTo(1);
 	}
@@ -51,8 +50,8 @@ public class MovieSearchControllerTest {
 	public void getMovieTitlesTestIsEmpty(){
 		List<String> titles = new ArrayList<String>();
 	    when(service.findMoviesByTitle(anyString())).thenReturn(titles);
-	    SearchRequest s = new SearchRequest("s");
-	    ResponseEntity<SearchResponse> resp = controller.getMovieTitles(s);
+
+	    ResponseEntity<SearchResponse> resp = controller.getMovieTitles("s");
 	    Assertions.assertThat(resp).isNotNull();
 	    Assertions.assertThat(resp.getBody().getTitles()).isEmpty();
 	}
