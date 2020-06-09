@@ -1,4 +1,4 @@
-# Movie Titles API Challenge
+# Movie Titles API
 
 ## Description
 
