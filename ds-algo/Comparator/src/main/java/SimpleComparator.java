@@ -24,7 +24,7 @@ public class SimpleComparator {
 class SimpleCompareStringLength implements Comparator<String> {
     public int compare(String o1, String o2) {
         int result = Integer.compare(o1.length(), o2.length());
-        System.out.println("compared  :" +  o1 +" -> "+ o2 + " = " + result);
+        System.out.println("compared: " +  o1 +" -> "+ o2 + " = " + result);
         return result;
     }
 }
