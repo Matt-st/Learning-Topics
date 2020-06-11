@@ -1,13 +1,14 @@
 
 import java.util.*;
 
-public class LexicalStringSort {
+public class LexicalCapitalStringSort {
 
     static void parseWords(String input) {
         String[] strArray = input.split(" ");
 
         List<String> wordList = Arrays.asList(strArray);
-        Collections.sort(wordList, new SimpleCompareStringLength().thenComparing(String::compareToIgnoreCase));
+        Collections.sort(wordList, new SimpleCompareStringLength()
+                .thenComparing(String::compareTo));
         for(int i = 0; i < wordList.size(); i++){
             System.out.println(" " + wordList.get(i));
         }
