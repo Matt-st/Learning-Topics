@@ -29,7 +29,7 @@ public class MovieSearchServiceImpl implements MovieSearchService {
 		        .queryParam("Title", title);
 		HRMovieResponse response = httpGetByTitle(builder);
 		List<String> titles = new ArrayList<String>();
-		for(int j = 1; j <= response.getTotal_pages(); j++){
+		for(int j = 1; j <= response.getTotalPages(); j++){
 			 builder = UriComponentsBuilder.fromHttpUrl(url)
 				        .queryParam("Title", title)
 				        .queryParam("page", j);
