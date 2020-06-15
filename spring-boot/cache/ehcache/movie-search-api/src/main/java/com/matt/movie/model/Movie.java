@@ -3,27 +3,30 @@ package com.matt.movie.model;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
+
 @JsonAutoDetect(fieldVisibility=JsonAutoDetect.Visibility.ANY, getterVisibility=JsonAutoDetect.Visibility.NONE, setterVisibility=JsonAutoDetect.Visibility.NONE, creatorVisibility=JsonAutoDetect.Visibility.NONE)
-public class Movie {
+public class Movie implements Serializable {
 
 	@JsonProperty("Title")
-	private String Title;
+	private String title;
 	@JsonProperty("Year")
-	private int Year;
+	private int year;
+	@JsonProperty("imdbID")
 	private String imdbID;
     	
 
 	public String getTitle() {
-		return Title;
+		return title;
 	}
 	public void setTitle(String title) {
-		Title = title;
+		this.title = title;
 	}
 	public int getYear() {
-		return Year;
+		return year;
 	}
 	public void setYear(int year) {
-		Year = year;
+		this.year = year;
 	}
 	public String getImdbID() {
 		return imdbID;
@@ -36,13 +39,13 @@ public class Movie {
 	
 	public Movie(String title, int year, String imdbID) {
 		super();
-		Title = title;
-		Year = year;
+		this.title = title;
+		this.year = year;
 		this.imdbID = imdbID;
 	}
 	@Override
 	public String toString() {
-		return "Movie [Title=" + Title + ", Year=" + Year + ", imdbID="
+		return "Movie [Title=" + title + ", Year=" + year + ", imdbID="
 				+ imdbID + "]";
 	}
 }

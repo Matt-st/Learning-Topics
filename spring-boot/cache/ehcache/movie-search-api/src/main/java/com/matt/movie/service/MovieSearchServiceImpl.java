@@ -2,8 +2,10 @@ package com.matt.movie.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
+import com.matt.movie.model.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -24,22 +26,23 @@ public class MovieSearchServiceImpl implements MovieSearchService {
 	//TODO add this to configuration file
 	private static String url = "https://jsonmock.hackerrank.com/api/movies/search/";
 
-	public List<String> findMoviesByTitle(String title){
+	public List<Movie> findMoviesByTitle(String title){
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
 		        .queryParam("Title", title);
 		HRMovieResponse response = httpGetByTitle(builder);
-		List<String> titles = new ArrayList<String>();
+		List<Movie> titles = new ArrayList<>();
 		for(int j = 1; j <= response.getTotalPages(); j++){
 			 builder = UriComponentsBuilder.fromHttpUrl(url)
 				        .queryParam("Title", title)
 				        .queryParam("page", j);
 			 HRMovieResponse resp = httpGetByTitle(builder);
 			for (int i = 0; i < resp.getData().size(); i++){
-				titles.add(resp.getData().get(i).getTitle());
+				titles.add(resp.getData().get(i));
 			}
 		}
-		
-		Collections.sort(titles);
+		Comparator<Movie> sortingByTitle =
+				Comparator.comparing(Movie::getTitle);
+		Collections.sort(titles, sortingByTitle);
 		return titles;
 		
 	}

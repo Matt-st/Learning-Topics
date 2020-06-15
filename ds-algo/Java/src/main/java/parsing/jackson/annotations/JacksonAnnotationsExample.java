@@ -60,6 +60,9 @@ class MyBean {
      @JsonProperty
      private int num = 9;
 
+    @JsonRawValue
+     public String json;
+
      @JsonIgnore
      public boolean hidden = true;
 

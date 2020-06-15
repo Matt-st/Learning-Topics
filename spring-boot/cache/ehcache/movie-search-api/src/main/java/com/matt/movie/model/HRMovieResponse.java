@@ -1,6 +1,6 @@
 package com.matt.movie.model;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
+
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 import java.util.List;

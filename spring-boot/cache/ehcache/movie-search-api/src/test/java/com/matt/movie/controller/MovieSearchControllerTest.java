@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.matt.movie.model.Movie;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,8 +17,6 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.ResponseEntity;
 
-import com.matt.movie.model.SearchRequest;
-import com.matt.movie.model.SearchResponse;
 import com.matt.movie.service.MovieSearchService;
 
 
@@ -38,21 +37,25 @@ public class MovieSearchControllerTest {
 
 	@Test
 	public void getMovieTitlesTestofSizeOne(){
-		List<String> titles = new ArrayList<String>();
-		titles.add("matt");
+		List<Movie> titles = new ArrayList<Movie>();
+		Movie m = new Movie();
+		m.setImdbID("id");
+		m.setTitle("matt");
+		m.setYear(2020);
+		titles.add(m);
 	    when(service.findMoviesByTitle(anyString())).thenReturn(titles);
-	    ResponseEntity<SearchResponse> resp = controller.getMovieTitles("s");
+	    ResponseEntity<List<Movie>> resp = controller.getMovieTitles("s");
 	    Assertions.assertThat(resp).isNotNull();
-	    Assertions.assertThat(resp.getBody().getTitles()).size().isEqualTo(1);
+	    Assertions.assertThat(resp.getBody()).size().isEqualTo(1);
 	}
 	
 	@Test
 	public void getMovieTitlesTestIsEmpty(){
-		List<String> titles = new ArrayList<String>();
+		List<Movie> titles = new ArrayList<Movie>();
 	    when(service.findMoviesByTitle(anyString())).thenReturn(titles);
 
-	    ResponseEntity<SearchResponse> resp = controller.getMovieTitles("s");
+	    ResponseEntity<List<Movie>> resp = controller.getMovieTitles("s");
 	    Assertions.assertThat(resp).isNotNull();
-	    Assertions.assertThat(resp.getBody().getTitles()).isEmpty();
+	    Assertions.assertThat(resp.getBody().isEmpty());
 	}
 }

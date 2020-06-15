@@ -23,7 +23,6 @@ import org.springframework.web.client.RestTemplate;
 
 import com.matt.movie.model.HRMovieResponse;
 import com.matt.movie.model.Movie;
-import com.matt.movie.model.SearchRequest;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MovieSearchServiceImplTest {
@@ -53,7 +52,7 @@ public class MovieSearchServiceImplTest {
 	    				ArgumentMatchers.any(HttpEntity.class), 
 	    				ArgumentMatchers.<Class<HRMovieResponse>>any())).thenReturn(response);
 
-	    List<String> titles = service.findMoviesByTitle("a");
+	    List<Movie> titles = service.findMoviesByTitle("a");
 	    System.out.println(titles.get(0));
 	    System.out.println(titles.get(1));
 	    Assertions.assertThat(titles).isNotNull();
